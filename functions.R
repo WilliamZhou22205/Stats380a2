@@ -43,5 +43,6 @@ while (found < 1000) {
   if (runif(1) < exp(logls[k] - top)) {
     found      <- found + 1
     t_c[found] <- guesses[[k]]$params[3]
+    cat("Good guesses found:", found, "\n")
   }
 }
