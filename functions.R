@@ -46,3 +46,5 @@ while (found < 1000) {
     cat("Good guesses found:", found, "\n")
   }
 }
+
+hist(t_c, breaks = 100, xlab = "t_c", main = "Plausible t_c values")
