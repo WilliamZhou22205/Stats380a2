@@ -27,3 +27,21 @@ guess_and_check <- function(the_data) {
   logl   <- log_likelihood(params, the_data)
   list(params = params, logl = logl)
 }
+
+
+data    <- read.csv("coal.csv")
+set.seed(380)
+guesses <- lapply(1:10000, function(i) guess_and_check(data))
+logls   <- sapply(guesses, function(g) g$logl)
+top     <- max(logls)
+
+t_c   <- numeric(1000)
+found <- 0
+
+while (found < 1000) {
+  k <- sample(length(guesses), 1)
+  if (runif(1) < exp(logls[k] - top)) {
+    found      <- found + 1
+    t_c[found] <- guesses[[k]]$params[3]
+  }
+}
